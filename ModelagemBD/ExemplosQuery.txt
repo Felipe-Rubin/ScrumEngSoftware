@@ -1,0 +1,26 @@
+Criacao de Usuario:
+
+	
+INSERT INTO Profile (CPF,Nome,Sobre) VALUES ("12345678910","Eduardo Augusto","Algo");
+
+
+Criacao de Endereco:
+
+INSERT INTO Endereco VALUES (0,"Rua Exemplo","RS","Porto Alegre","Bairro B",507,"Ap 201",12321090)
+
+
+Criacao de Pedido:
+
+
+INSERT INTO Pedido (CPFContratante,ValorPago,Descricao,Telefone,Prazo,IDEndereco) VALUES ("12345678910",150.0,"Trocar lampadas queimadas",555131572662,'2017-05-20',0)
+
+INSERT INTO Pedido (CPFContratante,ValorPago,Descricao,Telefone,Prazo,IDEndereco) VALUES ("12345678910",120.0,"Limpar casa",555131572662,'2017-05-08',0)
+
+Aceitacao de Pedido:
+
+	seleciona o pedido: 
+	SELECT * FROM Pedido where CPFContratante="12345678910" and IDPedido=5
+	Aceita o pedido:
+	UPDATE Pedido SET CPFContratado='10987654321' WHERE CPFContratante="12345678910" and IDPedido=5
+
+
