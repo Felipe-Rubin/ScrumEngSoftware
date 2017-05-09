@@ -161,11 +161,14 @@ public class Tela extends javax.swing.JFrame {
         // TODO add your handling code here:
         TelaSearch ts = new TelaSearch();
         this.setContentPane(ts);
+        pack();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaRequest tr = new TelaRequest();
         this.setContentPane(tr);
+        pack();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void fillJArea1(String info) {

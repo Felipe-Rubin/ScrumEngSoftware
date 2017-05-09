@@ -42,6 +42,7 @@ public class LoginRegisterForm extends javax.swing.JFrame {
         usuarioTextField = new javax.swing.JTextField("",10);
         
         senhaTextField = new javax.swing.JTextField("",10);
+        
         loginButton = new javax.swing.JButton();
         registrarButton = new javax.swing.JButton();
         senhaLabel.setText("Senha");
@@ -104,7 +105,7 @@ public class LoginRegisterForm extends javax.swing.JFrame {
                 repaint();
                 revalidate();
                 
-                System.out.println("Acaboo");
+                System.out.println("Ok Repaint");
             }
            
         });
@@ -159,7 +160,8 @@ public class RegisterPanelX extends javax.swing.JPanel {
     }
 
     private void configRegister() {
-
+        voltarButton = new javax.swing.JButton("Voltar");
+        
         usuarioRegLabel = new javax.swing.JLabel();
         senhaRegLabel = new javax.swing.JLabel();
         cpfRegLabel = new javax.swing.JLabel();
@@ -167,7 +169,12 @@ public class RegisterPanelX extends javax.swing.JPanel {
         senhaRegTextField = new javax.swing.JTextField("",10);
         cpfRegTextField = new javax.swing.JTextField("",10);
         registrarRegButton = new javax.swing.JButton();
-
+        
+        jScrollPane1 = new javax.swing.JScrollPane();
+        sobreRegTextArea = new javax.swing.JTextArea();
+        sobreRegLabel = new javax.swing.JLabel();
+        nomeRegLabel = new javax.swing.JLabel();
+        nomeRegTextField = new javax.swing.JTextField("",10);
         usuarioRegLabel.setText("Usuario");
 
         senhaRegLabel.setText("Senha");
@@ -193,11 +200,16 @@ public class RegisterPanelX extends javax.swing.JPanel {
                     }else{ //se n existe esse valor
                         System.out.println("N existe");
                         sc.initConnection();
-                        INSERT INTO Profile (CPF,Nome,Sobre) VALUES ("12345678910","Eduardo Augusto","Algo");
-                        sc.insertQuery(INSERT INTO"");
+                        
+                        sc.insertQuery("INSERT INTO Profile (CPF,Nome,Sobre) VALUES (\""+cpfRegTextField.getText()+"\",\""+nomeRegTextField.getText()+"\",\""+sobreRegTextArea.getText()+"\");");
                         sc.insertQuery("INSERT INTO Login VALUES (\""+usuarioRegTextField.getText()+"\",\""+senhaRegTextField.getText()+"\",\""+cpfRegTextField.getText()+"\");");
 
                         JOptionPane.showMessageDialog(null,"Registrado com sucesso","Registro Confirmado",JOptionPane.INFORMATION_MESSAGE);
+                        LoginPanelX lp = new LoginPanelX();
+                        setContentPane(lp);
+                        pack();
+                        repaint();
+
                         
                     }   
                 } catch (SQLException ex) {
@@ -209,36 +221,79 @@ public class RegisterPanelX extends javax.swing.JPanel {
         });
 
 
+        sobreRegTextArea.setColumns(20);
+        sobreRegTextArea.setRows(5);
+        jScrollPane1.setViewportView(sobreRegTextArea);
+
+        sobreRegLabel.setText("Sobre");
+
+        nomeRegLabel.setText("Nome");
+        
+        
+        voltarButton.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent e){
+               LoginPanelX lp = new LoginPanelX();
+               setContentPane(lp);
+               pack();
+               repaint();
+
+           }
+        });
+
+        
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addContainerGap()
+                .addComponent(voltarButton)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nomeRegLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(registrarRegButton, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usuarioRegLabel)
-                            .addComponent(senhaRegLabel)
-                            .addComponent(cpfRegLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usuarioRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cpfRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(senhaRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(usuarioRegLabel)
+                                    .addComponent(cpfRegLabel)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(sobreRegLabel)
+                                        .addComponent(senhaRegLabel)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(usuarioRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cpfRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(senhaRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nomeRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(76, 76, 76))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nomeRegLabel)
+                            .addComponent(nomeRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usuarioRegLabel)
                     .addComponent(usuarioRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(senhaRegLabel)
                     .addComponent(senhaRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -246,10 +301,19 @@ public class RegisterPanelX extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cpfRegLabel)
                     .addComponent(cpfRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(sobreRegLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
                 .addComponent(registrarRegButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
+
         
     }                      
 
@@ -257,13 +321,119 @@ public class RegisterPanelX extends javax.swing.JPanel {
     // Variables declaration - do not modify                     
     private javax.swing.JLabel cpfRegLabel;
     private javax.swing.JTextField cpfRegTextField;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nomeRegLabel;
+    private javax.swing.JTextField nomeRegTextField;
     private javax.swing.JButton registrarRegButton;
     private javax.swing.JLabel senhaRegLabel;
     private javax.swing.JTextField senhaRegTextField;
+    private javax.swing.JLabel sobreRegLabel;
+    private javax.swing.JTextArea sobreRegTextArea;
     private javax.swing.JLabel usuarioRegLabel;
     private javax.swing.JTextField usuarioRegTextField;
+    private javax.swing.JButton voltarButton;
+
     // End of variables declaration                   
 }    
+//**************
+public class TelaSearchX extends javax.swing.JPanel {
+    
+    public TelaSearchX(){
+        configTelaSearchX();
+    }
+    private void configTelaSearchX() {
+
+        searchSearchPanel = new javax.swing.JPanel();
+        searchSearchLabel = new javax.swing.JLabel();
+        buscarTextField = new java.awt.TextField();
+        buscarSearchButton = new javax.swing.JButton();
+        voltarSearchButton = new javax.swing.JButton();
+        PedidoScrollPanel = new javax.swing.JScrollPane();
+
+        searchSearchLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        searchSearchLabel.setText("Search");
+
+        buscarSearchButton.setText("Buscar");
+        
+        buscarSearchButton.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent e){
+               
+           } 
+        });
+
+        voltarSearchButton.setText("Voltar");
+
+        PedidoScrollPanel.setPreferredSize(new java.awt.Dimension(377, 195));
+        PedidoScrollPanel.setSize(new java.awt.Dimension(377, 195));
+
+        javax.swing.GroupLayout searchSearchPanelLayout = new javax.swing.GroupLayout(searchSearchPanel);
+        searchSearchPanel.setLayout(searchSearchPanelLayout);
+        searchSearchPanelLayout.setHorizontalGroup(
+            searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchSearchPanelLayout.createSequentialGroup()
+                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchSearchPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(voltarSearchButton)
+                        .addGap(77, 77, 77)
+                        .addComponent(searchSearchLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(searchSearchPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(searchSearchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        searchSearchPanelLayout.setVerticalGroup(
+            searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchSearchPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchSearchLabel)
+                    .addComponent(voltarSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarSearchButton))
+                .addGap(18, 18, 18)
+                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(searchSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(searchSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 63, Short.MAX_VALUE))
+        );
+
+
+}    
+
+    private javax.swing.JScrollPane PedidoScrollPanel;
+    private javax.swing.JButton buscarSearchButton;
+    private java.awt.TextField buscarTextField;
+    private javax.swing.JLabel searchSearchLabel;
+    private javax.swing.JPanel searchSearchPanel;
+    private javax.swing.JButton voltarSearchButton;
+
+}
+
+
 //**************
     /**
      * Creates new form LoginRegisterForm
