@@ -9,6 +9,9 @@ package App;
  *
  * @author felipe
  */
+
+
+
 public class RegisterPanel extends javax.swing.JPanel {
 
     /**
@@ -53,6 +56,11 @@ public class RegisterPanel extends javax.swing.JPanel {
         cpfRegTextField.setText("jTextField1");
 
         registrarRegButton.setText("Registrar");
+        registrarRegButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarRegButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,6 +108,17 @@ public class RegisterPanel extends javax.swing.JPanel {
     private void usuarioRegTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioRegTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usuarioRegTextFieldActionPerformed
+
+    private void registrarRegButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRegButtonActionPerformed
+        // TODO add your handling code here:
+       ConnectionProperties cp;
+        cp = new ConnectionProperties("localhost","3306","id1537077_projectdb","id1537077_root","roottoor");
+        
+        ServerConnect sc = new ServerConnect();
+        sc.setConnectionProp(cp);
+        
+        sc.QueryGeneric("SELECT * FROM Login WHERE usuario="+usuarioRegLabel.getText()+";");
+    }//GEN-LAST:event_registrarRegButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

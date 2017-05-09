@@ -21,6 +21,15 @@ public class ConnectionProperties {
     
     private String hostname, port, database, user, password;
     
+    public ConnectionProperties(String hostname, String port, String database, String user, String password){
+        this.hostname = hostname;
+        this.port = port;
+        this.database = database;
+        this.user = user;
+        this.password = password;
+        
+    }
+    
     public void setHost(String hostname){this.hostname = hostname;}
     public void setPort(String port){this.port = port;}
     public void setDB(String database){this.database = database;}

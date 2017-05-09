@@ -24,6 +24,10 @@ public class ServerConnect {
     private Connection connection = null;
     private ConnectionProperties cprop;
     
+    public ServerConnect(){
+        
+    }
+    
     public ConnectionProperties getConnectionProp() {
         return cprop;
     }

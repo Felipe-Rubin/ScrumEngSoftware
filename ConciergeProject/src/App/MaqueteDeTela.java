@@ -18,16 +18,11 @@ public class MaqueteDeTela {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-		SwingUtilities.invokeLater(new Runnable(){
-			public void run(){
-				try{
-				new Tela();
-				}catch(Exception e){
-					System.out.println("Bad initialization, cause:\n"+e.getMessage());
-					System.exit(0);
-				}
-			}
-		});	        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Tela().setVisible(true);
+            }
+        });        
         
     }
     
