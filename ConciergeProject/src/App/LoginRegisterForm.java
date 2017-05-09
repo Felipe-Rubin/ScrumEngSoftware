@@ -5,6 +5,7 @@
  */
 package App;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -67,7 +68,35 @@ public class LoginRegisterForm extends javax.swing.JFrame {
             }
         });
         
+        
+        
         registrarButton.setText("Registrar");
+        registrarButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                RegisterPanelX rpx = new RegisterPanelX();
+                Container contain = getContentPane();
+                contain.removeAll();
+                
+                //removeAll();
+                
+                repaint();
+                validate();
+                
+                
+                setContentPane(rpx);
+                setVisible(true);
+                pack();
+                //invalidate();
+                //repaint();
+                //validate();
+                repaint();
+                revalidate();
+                
+                System.out.println("Acaboo");
+            }
+           
+        });
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,6 +133,125 @@ public class LoginRegisterForm extends javax.swing.JFrame {
         );
         }
     }
+    
+    
+    
+//**************
+public class RegisterPanelX extends javax.swing.JPanel {
+
+    /**
+     * Creates new form RegisterPanelX
+     */
+    public RegisterPanelX() {
+        configRegister();
+    }
+
+    private void configRegister() {
+
+        usuarioRegLabel = new javax.swing.JLabel();
+        senhaRegLabel = new javax.swing.JLabel();
+        cpfRegLabel = new javax.swing.JLabel();
+        usuarioRegTextField = new javax.swing.JTextField("",10);
+        senhaRegTextField = new javax.swing.JTextField("",10);
+        cpfRegTextField = new javax.swing.JTextField("",10);
+        registrarRegButton = new javax.swing.JButton();
+
+        usuarioRegLabel.setText("Usuario");
+
+        senhaRegLabel.setText("Senha");
+
+        cpfRegLabel.setText("CPF");
+
+
+        registrarRegButton.setText("Registrar");
+        registrarRegButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+            ConnectionProperties cp;
+            cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
+        
+            ServerConnect sc = new ServerConnect();
+            sc.setConnectionProp(cp);
+            sc.initConnection();
+            ResultSet rs = sc.QueryGeneric("SELECT * FROM Login WHERE Usuario=\""+usuarioRegTextField.getText()+"\" or cpf=\""+cpfRegTextField.getText()+"\";");
+                try {
+                    if(rs.next()){ //se existe esse valor
+                        JOptionPane.showMessageDialog(null,"Registro CPF/Usuario ja existe","Falha ao Registrar",JOptionPane.INFORMATION_MESSAGE);
+                        System.out.println("Existe"+rs.next());
+                        //AQUI COMECARIA MSM O NEGOCIO
+                    }else{ //se n existe esse valor
+                        System.out.println("N existe");
+                        sc.initConnection();
+                        INSERT INTO Profile (CPF,Nome,Sobre) VALUES ("12345678910","Eduardo Augusto","Algo");
+                        sc.insertQuery(INSERT INTO"");
+                        sc.insertQuery("INSERT INTO Login VALUES (\""+usuarioRegTextField.getText()+"\",\""+senhaRegTextField.getText()+"\",\""+cpfRegTextField.getText()+"\");");
+
+                        JOptionPane.showMessageDialog(null,"Registrado com sucesso","Registro Confirmado",JOptionPane.INFORMATION_MESSAGE);
+                        
+                    }   
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginRegisterForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            
+            }
+        });
+
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(registrarRegButton, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usuarioRegLabel)
+                            .addComponent(senhaRegLabel)
+                            .addComponent(cpfRegLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usuarioRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cpfRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(senhaRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(76, 76, 76))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usuarioRegLabel)
+                    .addComponent(usuarioRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(senhaRegLabel)
+                    .addComponent(senhaRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cpfRegLabel)
+                    .addComponent(cpfRegTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(registrarRegButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+        );
+        
+    }                      
+
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JLabel cpfRegLabel;
+    private javax.swing.JTextField cpfRegTextField;
+    private javax.swing.JButton registrarRegButton;
+    private javax.swing.JLabel senhaRegLabel;
+    private javax.swing.JTextField senhaRegTextField;
+    private javax.swing.JLabel usuarioRegLabel;
+    private javax.swing.JTextField usuarioRegTextField;
+    // End of variables declaration                   
+}    
 //**************
     /**
      * Creates new form LoginRegisterForm

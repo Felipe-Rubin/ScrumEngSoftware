@@ -145,4 +145,15 @@ public class ServerConnect {
             return null;          
         }
     }
+    
+    public void insertQuery(String sql){
+        Statement st = null;
+        try{
+            st = connection.createStatement();
+            st.executeUpdate(sql);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    
+    }
 }
