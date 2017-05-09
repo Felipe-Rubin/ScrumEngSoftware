@@ -41,6 +41,10 @@ public class ServerConnect {
         this.connection = connection;
     }
     
+    public void initConnection(){
+        getConnection();
+    }
+    
     public Connection getConnection() {
         connection = getConnectionMySQL(cprop);
         return connection;
@@ -65,6 +69,7 @@ public class ServerConnect {
               return connection;              
             }else{return null;}
         }catch (ClassNotFoundException | SQLException e) {//Driver nao encontrado
+            System.out.println("WTF\n"+e.getMessage() + "\nWTF");
             return null;
         }
     }
@@ -130,7 +135,7 @@ public class ServerConnect {
     public ResultSet QueryGeneric(String sql){ //Generica requer input da Sql
     
         Statement st = null;
-        
+        if(connection == null) System.out.println("ta null");
         try{
             st = connection.createStatement();
             ResultSet rs = st.executeQuery(sql);

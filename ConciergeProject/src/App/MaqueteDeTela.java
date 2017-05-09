@@ -20,7 +20,8 @@ public class MaqueteDeTela {
         // TODO code application logic here
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela().setVisible(true);
+                //new Tela().setVisible(true);
+                new LoginRegisterForm().setVisible(true);
             }
         });        
         
