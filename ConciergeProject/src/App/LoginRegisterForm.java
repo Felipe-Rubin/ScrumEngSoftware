@@ -26,6 +26,11 @@ public class LoginRegisterForm extends javax.swing.JFrame {
     private javax.swing.JTextField senhaTextField;
     private javax.swing.JLabel usuarioLabel;
     private javax.swing.JTextField usuarioTextField;
+    
+    protected void close() {
+        this.dispose();
+    }
+    
     public class LoginPanelX extends javax.swing.JPanel {
         public LoginPanelX(){
             configLogin();
@@ -53,8 +58,15 @@ public class LoginRegisterForm extends javax.swing.JFrame {
             ResultSet rs = sc.QueryGeneric("SELECT * FROM Login WHERE Usuario=\""+usuarioTextField.getText()+"\" and Senha=\""+senhaTextField.getText()+"\";");
                 try {
                     if(rs.next()){ //se existe esse valor
-                        System.out.println("Existe"+rs.next());
-                        //AQUI COMECARIA MSM O NEGOCIO
+                        System.out.println("Existe"+rs.first());
+                        close();
+                        Tela mt = new Tela();
+                        mt.setVisible(true);
+                        ResultSet user = sc.QueryGeneric("SELECT * FROM Profile WHERE CPF LIKE " + rs.getNString("CPF"));
+                        user.next();
+                        mt.fillJArea1(user.getNString("Nome"));
+                        mt.fillJArea2("Sobre: " + user.getString("Sobre") + "\nPedidos Completos: " + user.getString("PedidosCompletos") + "\nPontualidade: " + user.getString("Pontualidade"));
+                        
                     }else{ //se n existe esse valor
                         JOptionPane.showMessageDialog(null,"Login errado","Falha ao Logar",JOptionPane.INFORMATION_MESSAGE);
                         System.out.println("N existe");
