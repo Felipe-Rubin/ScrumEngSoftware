@@ -336,102 +336,127 @@ public class RegisterPanelX extends javax.swing.JPanel {
     // End of variables declaration                   
 }    
 //**************
-public class TelaSearchX extends javax.swing.JPanel {
-    
-    public TelaSearchX(){
-        configTelaSearchX();
-    }
-    private void configTelaSearchX() {
-
-        searchSearchPanel = new javax.swing.JPanel();
-        searchSearchLabel = new javax.swing.JLabel();
-        buscarTextField = new java.awt.TextField();
-        buscarSearchButton = new javax.swing.JButton();
-        voltarSearchButton = new javax.swing.JButton();
-        PedidoScrollPanel = new javax.swing.JScrollPane();
-
-        searchSearchLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        searchSearchLabel.setText("Search");
-
-        buscarSearchButton.setText("Buscar");
-        
-        buscarSearchButton.addActionListener(new ActionListener(){
-           public void actionPerformed(ActionEvent e){
-               
-           } 
-        });
-
-        voltarSearchButton.setText("Voltar");
-
-        PedidoScrollPanel.setPreferredSize(new java.awt.Dimension(377, 195));
-        PedidoScrollPanel.setSize(new java.awt.Dimension(377, 195));
-
-        javax.swing.GroupLayout searchSearchPanelLayout = new javax.swing.GroupLayout(searchSearchPanel);
-        searchSearchPanel.setLayout(searchSearchPanelLayout);
-        searchSearchPanelLayout.setHorizontalGroup(
-            searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchSearchPanelLayout.createSequentialGroup()
-                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchSearchPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(voltarSearchButton)
-                        .addGap(77, 77, 77)
-                        .addComponent(searchSearchLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(searchSearchPanelLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(searchSearchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        searchSearchPanelLayout.setVerticalGroup(
-            searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchSearchPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchSearchLabel)
-                    .addComponent(voltarSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
-                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarSearchButton))
-                .addGap(18, 18, 18)
-                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(searchSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(searchSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 63, Short.MAX_VALUE))
-        );
-
-
-}    
-
-    private javax.swing.JScrollPane PedidoScrollPanel;
-    private javax.swing.JButton buscarSearchButton;
-    private java.awt.TextField buscarTextField;
-    private javax.swing.JLabel searchSearchLabel;
-    private javax.swing.JPanel searchSearchPanel;
-    private javax.swing.JButton voltarSearchButton;
-
-}
+//public class TelaSearchX extends javax.swing.JPanel {
+//    
+//    public TelaSearchX(){
+//        configTelaSearchX();
+//    }
+//    private void configTelaSearchX() {
+//
+//        searchSearchPanel = new javax.swing.JPanel();
+//        searchSearchLabel = new javax.swing.JLabel();
+//        buscarTextField = new java.awt.TextField();
+//        buscarSearchButton = new javax.swing.JButton();
+//        voltarSearchButton = new javax.swing.JButton();
+//        PedidoScrollPanel = new javax.swing.JScrollPane();
+//
+//        searchSearchLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+//        searchSearchLabel.setText("Search");
+//
+//        buscarSearchButton.setText("Buscar");
+//        
+//        buscarSearchButton.addActionListener(new ActionListener(){
+//           public void actionPerformed(ActionEvent e){
+//            ConnectionProperties cp;
+//            cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
+//        
+//            ServerConnect sc = new ServerConnect();
+//            sc.setConnectionProp(cp);
+//            sc.initConnection();
+//            ResultSet rs = sc.QueryGeneric("SELECT * FROM Pedido WHERE Descricao LIKE \"%"+buscarTextField.getText()+"%\";");
+//            System.out.println("Comecou a busca");
+//               try {
+//                   while(rs.next()){
+//                       System.out.println("Buscando");
+//                       String endereco = rs.getNString("Endereco");
+//                       String valorPago = rs.getNString("ValorPago");
+//                       System.out.println(valorPago);
+//                   }
+//               } catch (SQLException ex) {
+//                   Logger.getLogger(LoginRegisterForm.class.getName()).log(Level.SEVERE, null, ex);
+//                   System.out.println(ex.getMessage());
+//               }
+//               System.out.println("Saiu do loop");
+//           } 
+//        });
+//
+//        voltarSearchButton.setText("Voltar");
+//        
+//        voltarSearchButton.addActionListener(new ActionListener(){
+//           public void actionPerformed(ActionEvent e){
+//           }
+//           
+//        });
+//
+//        PedidoScrollPanel.setPreferredSize(new java.awt.Dimension(377, 195));
+//        PedidoScrollPanel.setSize(new java.awt.Dimension(377, 195));
+//
+//        javax.swing.GroupLayout searchSearchPanelLayout = new javax.swing.GroupLayout(searchSearchPanel);
+//        searchSearchPanel.setLayout(searchSearchPanelLayout);
+//        searchSearchPanelLayout.setHorizontalGroup(
+//            searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(searchSearchPanelLayout.createSequentialGroup()
+//                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                    .addGroup(searchSearchPanelLayout.createSequentialGroup()
+//                        .addContainerGap()
+//                        .addComponent(voltarSearchButton)
+//                        .addGap(77, 77, 77)
+//                        .addComponent(searchSearchLabel)
+//                        .addGap(0, 0, Short.MAX_VALUE))
+//                    .addGroup(searchSearchPanelLayout.createSequentialGroup()
+//                        .addGap(22, 22, 22)
+//                        .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+//                        .addComponent(buscarSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)))
+//                .addContainerGap())
+//            .addGroup(searchSearchPanelLayout.createSequentialGroup()
+//                .addContainerGap()
+//                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+//        );
+//        searchSearchPanelLayout.setVerticalGroup(
+//            searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(searchSearchPanelLayout.createSequentialGroup()
+//                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+//                    .addComponent(searchSearchLabel)
+//                    .addComponent(voltarSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+//                .addGap(20, 20, 20)
+//                .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                    .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                    .addComponent(buscarSearchButton))
+//                .addGap(18, 18, 18)
+//                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addGap(29, 29, 29))
+//        );
+//
+//        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+//        this.setLayout(layout);
+//        layout.setHorizontalGroup(
+//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(layout.createSequentialGroup()
+//                .addGap(25, 25, 25)
+//                .addComponent(searchSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+//        );
+//        layout.setVerticalGroup(
+//            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(layout.createSequentialGroup()
+//                .addComponent(searchSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addGap(0, 63, Short.MAX_VALUE))
+//        );
+//
+//
+//}    
+//
+//    private javax.swing.JScrollPane PedidoScrollPanel;
+//    private javax.swing.JButton buscarSearchButton;
+//    private java.awt.TextField buscarTextField;
+//    private javax.swing.JLabel searchSearchLabel;
+//    private javax.swing.JPanel searchSearchPanel;
+//    private javax.swing.JButton voltarSearchButton;
+//
+//}
 
 
 //**************

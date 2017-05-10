@@ -10,7 +10,12 @@ package App;
  * @author felipe
  */
 public class PedidoSearchPanel extends javax.swing.JPanel {
-
+    public void setEndereco(String endereco){
+        enderecoTextField.setText(endereco);
+    }
+    public void setValorPago(double valorpago){
+        valorpagoTextField.setText(valorpago+"");
+    }
     /**
      * Creates new form PedidoSearchPanel
      */

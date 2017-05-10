@@ -32,7 +32,8 @@ public class TelaSearch extends javax.swing.JPanel {
         buscarTextField = new java.awt.TextField();
         buscarSearchButton = new javax.swing.JButton();
         voltarSearchButton = new javax.swing.JButton();
-        PedidoScrollPanel = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        pedidoList = new javax.swing.JList<>();
 
         searchSearchLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         searchSearchLabel.setText("Search");
@@ -41,8 +42,13 @@ public class TelaSearch extends javax.swing.JPanel {
 
         voltarSearchButton.setText("Voltar");
 
-        PedidoScrollPanel.setPreferredSize(new java.awt.Dimension(377, 195));
-        PedidoScrollPanel.setSize(new java.awt.Dimension(377, 195));
+        pedidoList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
+        pedidoList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(pedidoList);
 
         javax.swing.GroupLayout searchSearchPanelLayout = new javax.swing.GroupLayout(searchSearchPanel);
         searchSearchPanel.setLayout(searchSearchPanelLayout);
@@ -58,14 +64,13 @@ public class TelaSearch extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(searchSearchPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)))
+                        .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchSearchPanelLayout.createSequentialGroup()
+                                .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buscarSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
-            .addGroup(searchSearchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchSearchPanelLayout.setVerticalGroup(
             searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,9 +83,9 @@ public class TelaSearch extends javax.swing.JPanel {
                 .addGroup(searchSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buscarTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarSearchButton))
-                .addGap(18, 18, 18)
-                .addComponent(PedidoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -90,7 +95,7 @@ public class TelaSearch extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(searchSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +107,10 @@ public class TelaSearch extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane PedidoScrollPanel;
     private javax.swing.JButton buscarSearchButton;
     private java.awt.TextField buscarTextField;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> pedidoList;
     private javax.swing.JLabel searchSearchLabel;
     private javax.swing.JPanel searchSearchPanel;
     private javax.swing.JButton voltarSearchButton;
