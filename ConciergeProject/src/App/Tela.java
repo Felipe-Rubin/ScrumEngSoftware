@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListModel;
@@ -28,8 +29,9 @@ public class Tela extends javax.swing.JFrame {
     /**
      * Creates new form Tela
      */
-    public Tela() {
-        
+    private String userName;
+    public Tela(String userName) {
+        this.userName = userName;
         initComponents();
         master = jPanel1;
     }
@@ -198,37 +200,37 @@ public class Tela extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Tela().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Tela().setVisible(true);
+//            }
+//        });
+//    }
     
     
 //***************
@@ -306,7 +308,9 @@ public class TelaSearchX extends javax.swing.JPanel {
                        PedidoSearchPanel ps = new PedidoSearchPanel();
                        ps.setEndereco(stEndereco);
                        ps.setValorPago(valorPago);
+                       
                        //containerAux.add(ps);
+                       
                        
                        model.addElement(ps);
                        
@@ -691,6 +695,37 @@ public class TelaRequestX extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        
+        //AQUEEEE
+        ConnectionProperties cp;
+        cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
+        
+        ServerConnect sc = new ServerConnect();
+        sc.setConnectionProp(cp);
+        sc.initConnection();
+        String q1 = "SELECT * FROM Endereco ORDER BY IDEndereco DESC";
+        ResultSet rs = sc.QueryGeneric(q1);
+        
+        try{
+        rs.next();
+        int currID = rs.getInt("IDEndereco");
+        currID++;
+        String cpfcontr = "";
+        String q2 = "INSERT INTO Endereco VALUES("+currID+",\""+ruaTextField.getText()+"\",\""+estadoTextField.getText()+"\",\""+cidadeTextField.getText()+"\",\""+bairroTextField.getText()+"\","+numeroTextField.getText()+",\""+complementoTextField.getText()+"\","+cepTextField.getText()+");";
+        String q3 = "SELECT * FROM Login WHERE Usuario=\""+userName+"\";";
+        sc.insertQuery(q2);
+        ResultSet rsCPF = sc.QueryGeneric(q3);
+        rsCPF.next();
+        cpfcontr = rsCPF.getNString("CPF");
+        String q4 = "INSERT INTO Pedido (CPFContratante,ValorPago, Descricao, Telefone, Prazo, IDEndereco) VALUES (\""+cpfcontr+"\","+this.textField4.getText()+",\""+this.textField2.getText()+"\",\""+this.textField6.getText()+"\",\'"+this.textField3.getText()+"\',"+currID+");";
+        sc.insertQuery(q4);
+        JOptionPane.showMessageDialog(null,"Pedido realizado com sucesso ","Pedido Realizado",JOptionPane.INFORMATION_MESSAGE);
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        
     }                                        
 
     private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {                                           

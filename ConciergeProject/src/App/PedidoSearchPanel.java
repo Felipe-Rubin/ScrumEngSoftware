@@ -11,11 +11,14 @@ package App;
  */
 public class PedidoSearchPanel extends javax.swing.JPanel {
     public void setEndereco(String endereco){
-        enderecoTextField.setText(endereco);
+        this.enderecoLabelValue.setText(endereco);
+        
     }
     public void setValorPago(double valorpago){
-        valorpagoTextField.setText(valorpago+"");
+     this.valorPagoLabelValue.setText(valorpago+"");
+     
     }
+    
     /**
      * Creates new form PedidoSearchPanel
      */
@@ -35,10 +38,10 @@ public class PedidoSearchPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         enderecoLabel = new javax.swing.JLabel();
-        enderecoTextField = new java.awt.TextField();
         valorpagoLabel = new javax.swing.JLabel();
-        valorpagoTextField = new java.awt.TextField();
         saibamaisButton = new javax.swing.JButton();
+        enderecoLabelValue = new javax.swing.JLabel();
+        valorPagoLabelValue = new javax.swing.JLabel();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(0, 0, 0), null));
 
@@ -46,13 +49,13 @@ public class PedidoSearchPanel extends javax.swing.JPanel {
 
         enderecoLabel.setText("Endereço");
 
-        enderecoTextField.setEditable(false);
-
         valorpagoLabel.setText("Valor Pago");
 
-        valorpagoTextField.setEditable(false);
-
         saibamaisButton.setText("Saiba mais");
+
+        enderecoLabelValue.setText("jLabel1");
+
+        valorPagoLabelValue.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -61,22 +64,22 @@ public class PedidoSearchPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(valorpagoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(enderecoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(enderecoLabel)
-                                .addComponent(valorpagoLabel))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addComponent(saibamaisButton))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(enderecoLabelValue))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(valorPagoLabelValue)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(enderecoLabel)
+                                .addComponent(valorpagoLabel)))))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,13 +88,13 @@ public class PedidoSearchPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enderecoLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enderecoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(enderecoLabelValue)
+                .addGap(16, 16, 16)
                 .addComponent(valorpagoLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(valorpagoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(valorPagoLabelValue)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(saibamaisButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -116,11 +119,11 @@ public class PedidoSearchPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enderecoLabel;
-    private java.awt.TextField enderecoTextField;
+    private javax.swing.JLabel enderecoLabelValue;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton saibamaisButton;
+    private javax.swing.JLabel valorPagoLabelValue;
     private javax.swing.JLabel valorpagoLabel;
-    private java.awt.TextField valorpagoTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -62,7 +62,7 @@ public class LoginRegisterForm extends javax.swing.JFrame {
                     if(rs.next()){ //se existe esse valor
                         System.out.println("Existe"+rs.first());
                         close();
-                        Tela mt = new Tela();
+                        Tela mt = new Tela(usuarioTextField.getText());
                         mt.setVisible(true);
                         ResultSet user = sc.QueryGeneric("SELECT * FROM Profile WHERE CPF LIKE " + rs.getNString("CPF"));
                         user.next();
