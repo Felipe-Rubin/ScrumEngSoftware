@@ -41,7 +41,9 @@ public class LoginRegisterForm extends javax.swing.JFrame {
         usuarioLabel = new javax.swing.JLabel();
         usuarioTextField = new javax.swing.JTextField("",10);
         
-        senhaTextField = new javax.swing.JTextField("",10);
+        //senhaTextField = new javax.swing.JTextField("",10);
+        senhaTextField = new javax.swing.JPasswordField(10);
+        
         
         loginButton = new javax.swing.JButton();
         registrarButton = new javax.swing.JButton();
@@ -166,7 +168,8 @@ public class RegisterPanelX extends javax.swing.JPanel {
         senhaRegLabel = new javax.swing.JLabel();
         cpfRegLabel = new javax.swing.JLabel();
         usuarioRegTextField = new javax.swing.JTextField("",10);
-        senhaRegTextField = new javax.swing.JTextField("",10);
+        //senhaRegTextField = new javax.swing.JTextField("",10);
+        senhaRegTextField = new javax.swing.JPasswordField(10);
         cpfRegTextField = new javax.swing.JTextField("",10);
         registrarRegButton = new javax.swing.JButton();
         
