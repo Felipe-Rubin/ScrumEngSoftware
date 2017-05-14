@@ -4,15 +4,21 @@
  * and open the template in the editor.
  */
 package App;
+//import com.apple.eawt.Application;
 
 import java.awt.Container;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,6 +43,7 @@ public class LoginRegisterForm extends javax.swing.JFrame {
             configLogin();
         }
         private void configLogin(){
+        setTitle("Concierge Login");             
         senhaLabel = new javax.swing.JLabel();
         usuarioLabel = new javax.swing.JLabel();
         usuarioTextField = new javax.swing.JTextField("",10);
@@ -48,11 +55,15 @@ public class LoginRegisterForm extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
         registrarButton = new javax.swing.JButton();
         senhaLabel.setText("Senha");
-        usuarioLabel.setText("Usuario");
+        usuarioLabel.setText("Usuário");
         loginButton.setText("Login");
         
         loginButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+            if(usuarioTextField.getText().matches("[\\s]*") || senhaTextField.getText().matches("[\\s]*")){
+                JOptionPane.showMessageDialog(null,"Login errado","Falha ao Logar",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
             ConnectionProperties cp;
             cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
         
@@ -162,6 +173,8 @@ public class RegisterPanelX extends javax.swing.JPanel {
     }
 
     private void configRegister() {
+        
+        setTitle("Concierge Registro");
         voltarButton = new javax.swing.JButton("Voltar");
         
         usuarioRegLabel = new javax.swing.JLabel();
@@ -178,7 +191,7 @@ public class RegisterPanelX extends javax.swing.JPanel {
         sobreRegLabel = new javax.swing.JLabel();
         nomeRegLabel = new javax.swing.JLabel();
         nomeRegTextField = new javax.swing.JTextField("",10);
-        usuarioRegLabel.setText("Usuario");
+        usuarioRegLabel.setText("Usuário");
 
         senhaRegLabel.setText("Senha");
 
@@ -188,6 +201,11 @@ public class RegisterPanelX extends javax.swing.JPanel {
         registrarRegButton.setText("Registrar");
         registrarRegButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+            if(usuarioRegTextField.getText().matches("[\\s]*") || senhaRegTextField.getText().matches("[\\s]*") ||
+                    nomeRegTextField.getText().matches("[\\s]*") || cpfRegTextField.getText().matches("[\\s]*")){
+                        JOptionPane.showMessageDialog(null,"Verifique campos em branco","Falha ao Registrar",JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
             ConnectionProperties cp;
             cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
         
@@ -472,6 +490,41 @@ public class RegisterPanelX extends javax.swing.JPanel {
     }
     
     private void openLoginForm(){
+        /*
+        COmo na resposta de Tot Zam, visualizado em 14/05/17
+        http://stackoverflow.com/questions/13400926/how-can-i-call-an-os-x-specific-method-for-my-cross-platform-jar/43873734#43873734
+        */
+        System.out.println("Tentando colocar imagem");
+        try{
+            Image i = ImageIO.read(getClass().getResource("/App/conciergeIcon.png"));
+            try {
+                // Replace: import com.apple.eawt.Application
+                String className = "com.apple.eawt.Application";
+                Class<?> cls = Class.forName(className);
+
+                // Replace: Application application = Application.getApplication();
+                Object application = cls.newInstance().getClass().getMethod("getApplication")
+                .invoke(null);
+
+                // Replace: application.setDockIconImage(image);
+                application.getClass().getMethod("setDockIconImage", java.awt.Image.class)
+                .invoke(application, i);
+                
+                
+            }catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException
+                    | InvocationTargetException | NoSuchMethodException | SecurityException
+                    | InstantiationException e) {
+                    e.printStackTrace();
+            }
+
+            if(i == null) System.out.println("IMG NULL");
+            //Application.getApplication().setDockIconImage(i);
+            this.setIconImage(i);
+            
+           //this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/App/conciergeIcon.png")));
+        }catch(Exception e){
+            System.out.println("Nao conseguiu abrir a imagem");
+        }
         LoginPanelX lp = new LoginPanelX();
         setContentPane(lp);
     }

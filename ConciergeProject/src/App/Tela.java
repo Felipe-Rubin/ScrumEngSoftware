@@ -32,7 +32,9 @@ public class Tela extends javax.swing.JFrame {
     private String userName;
     public Tela(String userName) {
         this.userName = userName;
+        setTitle("Perfil");
         initComponents();
+        
         master = jPanel1;
     }
 
@@ -240,7 +242,7 @@ public class TelaSearchX extends javax.swing.JPanel {
         configTelaSearchX();
     }
     private void configTelaSearchX() {
-
+        setTitle("Buscar Pedidos");
         searchSearchPanel = new javax.swing.JPanel();
         searchSearchLabel = new javax.swing.JLabel();
         buscarTextField = new java.awt.TextField();
@@ -263,7 +265,7 @@ public class TelaSearchX extends javax.swing.JPanel {
         
         voltarSearchButton.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
-            
+            setTitle("Perfil");
             setContentPane(jPanel1);
             pack();
            }
@@ -275,11 +277,11 @@ public class TelaSearchX extends javax.swing.JPanel {
 //        PedidoScrollPanel.setMinimumSize(new java.awt.Dimension(377,195));
 
         pedidoList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51)));
-        pedidoList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+//        pedidoList.setModel(new javax.swing.AbstractListModel<String>() {
+//            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+//            public int getSize() { return strings.length; }
+//            public String getElementAt(int i) { return strings[i]; }
+//        });
         buscarSearchButton.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
             ConnectionProperties cp;
@@ -429,6 +431,7 @@ public class TelaRequestX extends javax.swing.JPanel {
      * Creates new form TelaRequest
      */
     public TelaRequestX() {
+        setTitle("Requisitar Pedidos");
         initComponents();
     }
 
@@ -742,6 +745,7 @@ public class TelaRequestX extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
+       setTitle("Perfil");
        setContentPane(master);
         pack();
     }                                          
@@ -788,6 +792,8 @@ public class TelaRequestX extends javax.swing.JPanel {
             renderer.setBackground(isSelected ? list.getSelectionBackground() : list.getBackground());
             return renderer;
         }
+        
+
 
 
     }
