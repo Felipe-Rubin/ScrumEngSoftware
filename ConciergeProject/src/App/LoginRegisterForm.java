@@ -65,8 +65,8 @@ public class LoginRegisterForm extends javax.swing.JFrame {
                 return;
             }
             ConnectionProperties cp;
-            cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
-        
+            //cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
+            cp = new ConnectionProperties("foxi.wuffhost.ovh","3306","feliperubin_Concierge","feliperubin_root","toorroot");
             ServerConnect sc = new ServerConnect();
             sc.setConnectionProp(cp);
             sc.initConnection();

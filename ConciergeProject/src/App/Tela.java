@@ -285,7 +285,8 @@ public class TelaSearchX extends javax.swing.JPanel {
         buscarSearchButton.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
             ConnectionProperties cp;
-            cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
+            cp = new ConnectionProperties("foxi.wuffhost.ovh","3306","feliperubin_Concierge","feliperubin_root","toorroot");
+
         
             ServerConnect sc = new ServerConnect();
             ServerConnect sc2 = new ServerConnect();
@@ -522,33 +523,33 @@ public class TelaRequestX extends javax.swing.JPanel {
             }
         });
 
-        cidadeTextField.setText("jTextField1");
+        cidadeTextField.setText("");
 
         jLabel7.setText("Cidade");
 
         jLabel8.setText("Bairro");
 
-        bairroTextField.setText("jTextField1");
+        bairroTextField.setText("");
 
         jLabel9.setText("Estado");
 
-        estadoTextField.setText("jTextField1");
+        estadoTextField.setText("");
 
         jLabel10.setText("Rua");
 
-        ruaTextField.setText("jTextField1");
+        ruaTextField.setText("");
 
-        numeroTextField.setText("jTextField1");
+        numeroTextField.setText("");
 
         jLabel11.setText("Numero");
 
         jLabel12.setText("Complemento");
 
-        complementoTextField.setText("jTextField1");
+        complementoTextField.setText("");
 
         jLabel13.setText("CEP");
 
-        cepTextField.setText("jTextField1");
+        cepTextField.setText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -701,8 +702,9 @@ public class TelaRequestX extends javax.swing.JPanel {
         
         //AQUEEEE
         ConnectionProperties cp;
-        cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
-        
+        //cp = new ConnectionProperties("sql10.freesqldatabase.com","3306","sql10173560","sql10173560","fgGZXQncvF");
+        cp = new ConnectionProperties("foxi.wuffhost.ovh","3306","feliperubin_Concierge","feliperubin_root","toorroot");
+
         ServerConnect sc = new ServerConnect();
         sc.setConnectionProp(cp);
         sc.initConnection();
