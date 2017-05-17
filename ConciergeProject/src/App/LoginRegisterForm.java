@@ -75,13 +75,15 @@ public class LoginRegisterForm extends javax.swing.JFrame {
                     if(rs.next()){ //se existe esse valor
                         System.out.println("Existe"+rs.first());
                         close();
-                        Tela mt = new Tela(usuarioTextField.getText());
+                        //Tela mt = new Tela(usuarioTextField.getText());
+                        MainFrame mt = new MainFrame(usuarioTextField.getText());
                         mt.setVisible(true);
                         ResultSet user = sc.QueryGeneric("SELECT * FROM Profile WHERE CPF LIKE " + rs.getNString("CPF"));
                         user.next();
                         mt.fillJArea1(user.getNString("Nome"));
-                        mt.fillJArea2("Sobre: " + user.getString("Sobre") + "\nPedidos Completos: " + user.getString("PedidosCompletos") + "\nPontualidade: " + user.getString("Pontualidade"));
-                        
+                        mt.fillJArea2("Pedidos Completos: " + user.getString("PedidosCompletos") + "\nPontualidade: " + user.getString("Pontualidade"));
+                        //soh pra n mudar o nome deixei assim, n eh a JArea3..
+                        mt.fillJArea3("Sobre: " + user.getString("Sobre"));
                     }else{ //se n existe esse valor
                         JOptionPane.showMessageDialog(null,"Login errado","Falha ao Logar",JOptionPane.INFORMATION_MESSAGE);
                         System.out.println("N existe");
